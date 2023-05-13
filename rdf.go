@@ -9,10 +9,12 @@ import (
 	rdfpb "github.com/z5labs/rdf/proto"
 )
 
-func NewTriple(subject *rdfpb.Subject, predicate string, object *rdfpb.Object) *rdfpb.Triple {
+type Predicate string
+
+func NewTriple(subject *rdfpb.Subject, predicate Predicate, object *rdfpb.Object) *rdfpb.Triple {
 	return &rdfpb.Triple{
 		Subject:   subject,
-		Predicate: predicate,
+		Predicate: string(predicate),
 		Object:    object,
 	}
 }

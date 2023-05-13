@@ -1,0 +1,41 @@
+// Copyright (c) 2023 Z5Labs and Contributors
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
+syntax = "proto3";
+
+package rdf;
+
+option go_package = "github.com/z5labs/rdf/proto";
+
+message Triple {
+    Subject subject = 1;
+    string predicate = 2;
+    Object object = 3;
+}
+
+message Subject {
+    oneof value {
+        string iri = 1;
+        string blank_node = 2;
+    }
+}
+
+message Object {
+    oneof value {
+        string iri = 4;
+        string blank_node = 5;
+        Literal literal = 6;
+    }
+}
+
+message Literal {
+    oneof value {
+        string string = 1;
+        int64 int = 2;
+        double float64 = 3;
+        bool bool = 4;
+        bytes bytes = 5;
+    }
+}
